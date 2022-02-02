@@ -4,12 +4,20 @@ import java.util.HashMap;
 
 import com.goldencrown.entities.BaseKingdom;
 
-public class DecipherMessageService {
+public class DecipherMessageService implements IDecipherMessageService {
 
-    private final Character ASCII_LOWER_BOUND = 'A';
+    private final Character ASCII_UPPER_BOUND = 'Z';
     private final Integer ASCII_BOUND_CORRECTION = 26;
 
+    /**
+     * Core business logic of problem
+     * Deciphers secret message in O(N) Time; O(K) Space
+     * where N is length of message string & K is length of emblem
+     */
+    @Override
     public boolean decipherSecretMessage(BaseKingdom receiverKingdom, String message) {
+
+        // Build hash map of letters in emblem with their occurence
         HashMap<Character, Integer> emblemMap = getEmblemMap(receiverKingdom);
 
         for (Character character : message.toCharArray()) {
@@ -31,9 +39,11 @@ public class DecipherMessageService {
         Integer cipherKey = emblem.length();
 
         for (Character character : emblem.toCharArray()) {
-            character = (char) (character - cipherKey);
-            if (character < ASCII_LOWER_BOUND)
-                character = (char) (character + ASCII_BOUND_CORRECTION);
+
+            // Move character forward by cipher-key units and check for ASCII leakage
+            character = (char) (character + cipherKey);
+            if (character > ASCII_UPPER_BOUND)
+                character = (char) (character - ASCII_BOUND_CORRECTION);
 
             emblemMap.put(character, emblemMap.getOrDefault(character, 0) + 1);
         }

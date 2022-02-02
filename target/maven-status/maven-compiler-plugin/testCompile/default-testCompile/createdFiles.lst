@@ -1,0 +1,5 @@
+com\goldencrown\services\RulerKingdomServiceTest.class
+com\goldencrown\services\BaseKingdomServiceTest.class
+com\goldencrown\services\DecipherMessageServiceTest.class
+com\goldencrown\entities\RulerKingdomTest.class
+com\goldencrown\entities\BaseKingdomTest.class
