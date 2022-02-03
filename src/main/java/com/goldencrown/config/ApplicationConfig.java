@@ -10,12 +10,8 @@ import com.goldencrown.services.*;
 
 public class ApplicationConfig {
 
-    private final IBaseKindgomRepository baseKindgomRepository;
+    private final IBaseKindgomRepository baseKingdomRepository;
     private final IRulerKingdomRepository rulerKingdomRepository;
-
-    private final IDecipherMessageService decipherMessageService;
-    private final IBaseKingdomService baseKingdomService;
-    private final IRulerKingdomService rulerKingdomService;
 
     private final ICommand sendMessageCommand;
     private final ICommand displayOutputCommand;
@@ -25,28 +21,28 @@ public class ApplicationConfig {
     private final String RULER_KINGDOM = "SPACE";
 
     public ApplicationConfig() {
-        baseKindgomRepository = new BaseKingdomRepository();
+        baseKingdomRepository = new BaseKingdomRepository();
         rulerKingdomRepository = new RulerKingdomRepository();
 
-        decipherMessageService = new DecipherMessageService();
-        baseKingdomService = new BaseKingdomService(decipherMessageService);
+        IDecipherMessageService decipherMessageService = new DecipherMessageService();
+        IBaseKingdomService baseKingdomService = new BaseKingdomService(decipherMessageService);
 
         registerKingdoms();
 
         IRulerKingdom rulerKingdom = rulerKingdomRepository.getKingdomByName(RULER_KINGDOM);
-        rulerKingdomService = new RulerKingdomService(rulerKingdom);
+        IRulerKingdomService rulerKingdomService = new RulerKingdomService(rulerKingdom);
 
-        sendMessageCommand = new SendMessageCommand(rulerKingdomService, baseKingdomService, baseKindgomRepository);
+        sendMessageCommand = new SendMessageCommand(rulerKingdomService, baseKingdomService, baseKingdomRepository);
         displayOutputCommand = new DisplayOutputCommand(rulerKingdomRepository);
     }
 
     private void registerKingdoms() {
-        baseKindgomRepository.registerKingdom(new Space("SPACE", "GORILLA", new LinkedHashSet<>()));
-        baseKindgomRepository.registerKingdom(new Air("AIR", "OWL", new LinkedHashSet<>()));
-        baseKindgomRepository.registerKingdom(new Land("LAND", "PANDA", new LinkedHashSet<>()));
-        baseKindgomRepository.registerKingdom(new Water("WATER", "OCTOPUS", new LinkedHashSet<>()));
-        baseKindgomRepository.registerKingdom(new Ice("ICE", "MAMMOTH", new LinkedHashSet<>()));
-        baseKindgomRepository.registerKingdom(new Fire("FIRE", "DRAGON", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Space("SPACE", "GORILLA", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Air("AIR", "OWL", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Land("LAND", "PANDA", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Water("WATER", "OCTOPUS", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Ice("ICE", "MAMMOTH", new LinkedHashSet<>()));
+        baseKingdomRepository.registerKingdom(new Fire("FIRE", "DRAGON", new LinkedHashSet<>()));
 
         rulerKingdomRepository
                 .registerKingdom(new Space("SPACE", "GORILLA", new LinkedHashSet<>(), "SHAN"));
@@ -56,5 +52,9 @@ public class ApplicationConfig {
         commandInvoker.registerCommand("SEND_MESSAGE", sendMessageCommand);
         commandInvoker.registerCommand("DISPLAY_OUTPUT", displayOutputCommand);
         return commandInvoker;
+    }
+
+    public String getRulerKingdom() {
+        return RULER_KINGDOM;
     }
 }

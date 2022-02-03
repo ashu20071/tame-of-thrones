@@ -6,7 +6,7 @@ import com.goldencrown.dto.SecretMessage;
 
 public interface IRulerKingdom {
 
-    final Integer REQUIRED_ALLIES = 3;
+    Integer REQUIRED_ALLIES = 3;
 
     String getKingdomName();
 

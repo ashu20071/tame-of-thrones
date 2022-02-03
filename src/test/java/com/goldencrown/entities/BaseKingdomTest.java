@@ -6,6 +6,8 @@ import java.util.Set;
 
 import com.goldencrown.entities.Kingdoms.Air;
 import com.goldencrown.entities.Kingdoms.Fire;
+import com.goldencrown.entities.Kingdoms.Ice;
+import com.goldencrown.entities.Kingdoms.Land;
 import com.goldencrown.entities.Kingdoms.Space;
 
 import org.junit.jupiter.api.Assertions;
@@ -18,19 +20,23 @@ public class BaseKingdomTest {
     private BaseKingdom air;
     private BaseKingdom space;
     private BaseKingdom fire;
+    private BaseKingdom land;
+    private BaseKingdom ice;
 
     @BeforeEach
     public void setup() {
         air = new Air("AIR", "OWL", new LinkedHashSet<>());
         space = new Space("SPACE", "GORILLA", new LinkedHashSet<>());
         fire = new Fire("FIRE", "DRAGON", new LinkedHashSet<>());
+        land = new Land("LAND", "PANDA", new LinkedHashSet<>());
+        ice = new Ice("ICE", "MAMMOTH", new LinkedHashSet<>());
     }
 
     @Test
     @DisplayName("creating new base kingdom with passed non-empty ally list should not add duplicate allies")
     public void createBaseKingdom_shouldNotAddDuplicateAllies() {
         Set<BaseKingdom> allies = new LinkedHashSet<>(
-                Arrays.asList(new BaseKingdom[] { air, air, air }));
+                Arrays.asList(air, air, air));
         BaseKingdom baseKingdom = new Fire("FIRE", "DRAGON", allies);
 
         // 3 kingdoms added but only 1 unique
@@ -40,21 +46,21 @@ public class BaseKingdomTest {
     @Test
     @DisplayName("creating new base kingdom with passed non-empty ally list should add itself to all allies")
     public void createBaseKingdom_shouldAddItselfToAllies() {
-        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(new BaseKingdom[] { air, space }));
+        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(ice, space));
         BaseKingdom baseKingdom = new Fire("FIRE", "DRAGON", allies);
 
         // passed kingdoms at creation should be allied to each other
-        Assertions.assertTrue(air.getAllies().contains(baseKingdom));
+        Assertions.assertTrue(ice.getAllies().contains(baseKingdom));
         Assertions.assertTrue(space.getAllies().contains(baseKingdom));
 
         // allies of allies should not be allies
-        Assertions.assertFalse(air.getAllies().contains(space));
+        Assertions.assertFalse(ice.getAllies().contains(space));
     }
 
     @Test
     @DisplayName("creating new base kingdom with passed non-empty ally list should validate allies, removing itself if present")
     public void createBaseKingdom_shouldValidateAllies() {
-        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(new BaseKingdom[] { air, space }));
+        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(land, space));
         BaseKingdom baseKingdom = new Space("SPACE", "GORILLA", allies);
 
         Assertions.assertFalse(baseKingdom.getAllies().contains(space));
@@ -77,7 +83,7 @@ public class BaseKingdomTest {
     @Test
     @DisplayName("removeAlly method should remove given ally and also remove itself from that kingdom's allies")
     public void removeAlly_shouldRemoveItselfFromAllies() {
-        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(new BaseKingdom[] { air, space }));
+        Set<BaseKingdom> allies = new LinkedHashSet<>(Arrays.asList(air, space));
 
         BaseKingdom baseKingdom = new Fire("FIRE", "DRAGON", allies);
         baseKingdom.removeAlly(air);

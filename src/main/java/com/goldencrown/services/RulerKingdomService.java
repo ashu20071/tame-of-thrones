@@ -7,7 +7,7 @@ import com.goldencrown.exceptions.InvalidKingdomException;
 import com.goldencrown.exceptions.InvalidMessageException;
 
 public class RulerKingdomService implements IRulerKingdomService {
-    private IRulerKingdom rulerKingdom;
+    private final IRulerKingdom rulerKingdom;
 
     public RulerKingdomService(IRulerKingdom rulerKingdom) {
         this.rulerKingdom = rulerKingdom;

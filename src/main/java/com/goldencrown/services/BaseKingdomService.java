@@ -23,8 +23,7 @@ public class BaseKingdomService implements IBaseKingdomService {
         String message = secretMessage.getMessage();
 
         // Use decipher message service to decipher given message
-        boolean response = decipherMessageService.decipherSecretMessage(receiverKingdom, message);
-        return response;
+        return decipherMessageService.decipherSecretMessage(receiverKingdom, message);
     }
 
 }

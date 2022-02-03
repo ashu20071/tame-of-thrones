@@ -15,6 +15,10 @@ public class App {
         // Initialize configuration and get registered commands
         ApplicationConfig applicationConfig = new ApplicationConfig();
         CommandInvoker commandInvoker = applicationConfig.getCommandInvoker();
+        final String RULER_KINGDOM = applicationConfig.getRulerKingdom();
+        final String SEND_MESSAGE = "SEND_MESSAGE";
+        final String DISPLAY_OUTPUT = "DISPLAY_OUTPUT";
+        final int TOKEN_SPLIT_LIMIT = 2;
 
         // Retrieve input text file path in args
         String filePath = args[0];
@@ -22,19 +26,19 @@ public class App {
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String inpuString;
+            String inputString;
 
-            while ((inpuString = bufferedReader.readLine()) != null) {
+            while ((inputString = bufferedReader.readLine()) != null) {
 
                 // Split input string by first whitespace as message can contain whitespace
-                List<String> tokens = Arrays.asList(inpuString.split(" ", 2));
+                List<String> tokens = Arrays.asList(inputString.split(" ", TOKEN_SPLIT_LIMIT));
 
                 // Execute command to send message to kingdoms
-                commandInvoker.executeCommand("SEND_MESSAGE", tokens);
+                commandInvoker.executeCommand(SEND_MESSAGE, tokens);
             }
 
-            // Display output for SPACE kingdom if it conquered Southeros
-            commandInvoker.executeCommand("DISPLAY_OUTPUT", Arrays.asList(new String[] { "SPACE" }));
+            // Display output for ruler kingdom if it conquered Southeros
+            commandInvoker.executeCommand(DISPLAY_OUTPUT, Arrays.asList(RULER_KINGDOM));
             bufferedReader.close();
 
         } catch (Exception exception) {

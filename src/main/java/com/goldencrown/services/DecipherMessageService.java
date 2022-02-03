@@ -6,9 +6,6 @@ import com.goldencrown.entities.BaseKingdom;
 
 public class DecipherMessageService implements IDecipherMessageService {
 
-    private final Character ASCII_UPPER_BOUND = 'Z';
-    private final Integer ASCII_BOUND_CORRECTION = 26;
-
     /**
      * Core business logic of problem
      * Deciphers secret message in O(N) Time; O(K) Space
@@ -19,6 +16,7 @@ public class DecipherMessageService implements IDecipherMessageService {
 
         // Build hash map of letters in emblem with their occurence
         HashMap<Character, Integer> emblemMap = getEmblemMap(receiverKingdom);
+        message = message.toUpperCase();
 
         for (Character character : message.toCharArray()) {
             if (emblemMap.containsKey(character)) {
@@ -35,8 +33,11 @@ public class DecipherMessageService implements IDecipherMessageService {
 
     private HashMap<Character, Integer> getEmblemMap(BaseKingdom receiverKingdom) {
         HashMap<Character, Integer> emblemMap = new HashMap<>();
-        String emblem = receiverKingdom.getEmblem();
+        String emblem = receiverKingdom.getEmblem().toUpperCase();
         Integer cipherKey = emblem.length();
+
+        final char ASCII_UPPER_BOUND = 'Z';
+        final Integer ASCII_BOUND_CORRECTION = 26;
 
         for (Character character : emblem.toCharArray()) {
 

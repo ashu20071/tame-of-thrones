@@ -42,7 +42,7 @@ public class SendMessageCommand implements ICommand {
             rulerKingdomService.receiveResponse(secretMessage, response);
 
         } catch (InvalidMessageException | InvalidKingdomException exception) {
-            exception.printStackTrace();
+            System.out.println(exception);
         }
     }
 

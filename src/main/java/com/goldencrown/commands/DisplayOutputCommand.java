@@ -25,14 +25,15 @@ public class DisplayOutputCommand implements ICommand {
             System.out.println(declareVictory(rulerKingdom));
         else
             System.out.println("NONE");
+
     }
 
     private String declareVictory(IRulerKingdom rulerKingdom) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(rulerKingdom.getKingdomName() + " ");
+        stringBuilder.append(rulerKingdom.getKingdomName()).append(" ");
 
         rulerKingdom.getAllies().forEach(ally -> {
-            stringBuilder.append(ally.getKingdomName() + " ");
+            stringBuilder.append(ally.getKingdomName()).append(" ");
         });
 
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);

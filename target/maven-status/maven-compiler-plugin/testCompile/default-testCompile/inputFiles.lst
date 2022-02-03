@@ -1,5 +1,11 @@
-c:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\BaseKingdomServiceTest.java
-c:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\RulerKingdomServiceTest.java
-c:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\entities\BaseKingdomTest.java
-c:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\entities\RulerKingdomTest.java
-c:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\DecipherMessageServiceTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\BaseKingdomServiceTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\AppTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\commands\DisplayOutputCommandTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\RulerKingdomServiceTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\repositories\BaseKingdomRepositoryTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\entities\BaseKingdomTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\commands\CommandInvokerTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\entities\RulerKingdomTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\repositories\RulerKingdomRepositoryTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\services\DecipherMessageServiceTest.java
+C:\Users\ashu2\tame-of-thrones\src\test\java\com\goldencrown\commands\SendMessageCommandTest.java
