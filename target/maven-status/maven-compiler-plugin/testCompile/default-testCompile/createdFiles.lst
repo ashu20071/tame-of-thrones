@@ -2,7 +2,6 @@ com\goldencrown\repositories\BaseKingdomRepositoryTest.class
 com\goldencrown\commands\SendMessageCommandTest.class
 com\goldencrown\entities\RulerKingdomTest.class
 com\goldencrown\entities\BaseKingdomTest.class
-com\goldencrown\AppTest.class
 com\goldencrown\services\RulerKingdomServiceTest.class
 com\goldencrown\repositories\RulerKingdomRepositoryTest.class
 com\goldencrown\services\BaseKingdomServiceTest.class

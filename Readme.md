@@ -29,6 +29,6 @@ mvn clean test
 # Feedback
 Please feel free to provide feedback and suggestions to how the code can be improved.
 
-Reach out to me on [LinkedIn](https://linked.com/in/ashu20071) [Twitter](https://twitter.com/ash_es1)
+Reach out to me on [LinkedIn](https://linkedin.com/in/ashu20071) [Twitter](https://twitter.com/ash_es1)
 
 
